@@ -13,6 +13,21 @@ async def on_ready():
 @bot.command()
 async def status(ctx):
     await ctx.send('Bot is running!')
+    
+@bot.command()
+async def rps(ctx, choice: str):
+    if choice == 'rock':
+        botchoice = 'paper'
+    elif choice == 'paper':
+        botchoice = 'scissors'
+    elif choice == 'scissors':
+        botchoice = 'rock'
+    else:
+        await ctx.send('Please only choose rock, paper, or scissors')
+        return
+    await ctx.send('Your choice: {}'.format(choice))
+    await ctx.send('Bot\'s choice: {}'.format(botchoice))
+    await ctx.send('YOU LOSE!')
 
 @bot.command()
 async def roll(ctx, input: str, mod: int = 0):
