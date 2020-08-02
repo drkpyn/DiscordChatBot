@@ -11,10 +11,6 @@ async def on_ready():
     print("--------")
 
 @bot.command()
-async def help(ctx):
-    await ctx.send('Available commands: !help, !status, !roll')
-
-@bot.command()
 async def status(ctx):
     await ctx.send('Bot is running!')
 
