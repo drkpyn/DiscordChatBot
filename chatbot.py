@@ -1,30 +1,18 @@
+# get required dependencies
+import os
+import psycopg2
 import discord
 from discord.ext import commands
 import random
 
-sampleCharDict = {
-  "name": "Name",
-  "hpMax": 10,
-  "statStr": 18,
-  "statDex": 18,
-  "statCon": 18,
-  "statInt": 18,
-  "statWis": 18,
-  "statCha": 18,
-  "prof": 1,
-  "armor": 10,
-  "init": 1,
-  "speed": 30
-}
+# set up connection to local Postgres instance
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
+# create new bot
 bot = commands.Bot(command_prefix='!')
 
-@bot.event
-async def on_ready():
-    print("Logged in as")
-    print(bot.user.name)
-    print("--------")
-
+# begin defining commands
 @bot.command()
 async def status(ctx):
     await ctx.send('Bot is running!')
@@ -76,5 +64,6 @@ async def dm(ctx, subCommand: str, subArgument: str):
         except Exception:
             await ctx.send('An error occured')
             return
-    
+
+# start the bot and connect to Discord
 bot.run('NzM4MTk4OTA3NDYwNTE3ODk4.XyIbTg.k1s6Cm42Ss4OklnJLhXDNnFaftQ')
