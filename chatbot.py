@@ -66,4 +66,5 @@ async def dm(ctx, subCommand: str, subArgument: str):
             return
 
 # start the bot and connect to Discord
-bot.run('NzM4MTk4OTA3NDYwNTE3ODk4.XyIbTg.k1s6Cm42Ss4OklnJLhXDNnFaftQ')
+TOKEN = os.environ['DISCORD_TOKEN']
+bot.run(TOKEN)
