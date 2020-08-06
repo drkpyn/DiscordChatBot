@@ -72,7 +72,7 @@ async def dm(ctx, subCommand: str, subArgument: str):
         try:
             tempname = subArgument + 'CharDict'
             globals()[tempname] = sampleCharDict
-            await ctx.send(tempname)
+            await ctx.send(print(tempname))
         except Exception:
             await ctx.send('An error occured')
             return
