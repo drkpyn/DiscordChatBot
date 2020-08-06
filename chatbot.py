@@ -2,6 +2,21 @@ import discord
 from discord.ext import commands
 import random
 
+sampleCharDict = {
+  "name": "Name",
+  "hpMax": 10,
+  "statStr": 18,
+  "statDex": 18,
+  "statCon": 18,
+  "statInt": 18,
+  "statWis": 18,
+  "statCha": 18,
+  "prof": 1,
+  "armor": 10,
+  "init": 1,
+  "speed": 30
+}
+
 bot = commands.Bot(command_prefix='!')
 
 @bot.event
@@ -51,4 +66,15 @@ async def roll(ctx, input: str, mod: int = 0):
     await ctx.send('Rolls: {}'.format(results))
     await ctx.send('Total: {}'.format(total + mod))
 
+@bot.command()
+async def dm(ctx, subCommand: str, subArgument: str):
+    if (subCommand == 'new'):
+        try:
+            tempname = subArgument + 'CharDict'
+            globals()[tempname] = sampleCharDict
+            await ctx.send(tempname)
+        except Exception:
+            await ctx.send('An error occured')
+            return
+    
 bot.run('NzM4MTk4OTA3NDYwNTE3ODk4.XyIbTg.k1s6Cm42Ss4OklnJLhXDNnFaftQ')
